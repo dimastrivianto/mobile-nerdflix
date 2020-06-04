@@ -11,8 +11,8 @@ import Details from './Details'
 const Home = ({navigation}) => {
 
     const [films, setFilms] = useState([
-        {id : 1, title: 'Stranger Things', year : 2016},
-        {id : 2, title: 'Kingdom', year : 2019}
+        {id : 'unq989', title: 'Stranger Things', year : 2016},
+        {id : 'unq998', title: 'Kingdom', year : 2019}
     ])
 
     const deleteRoutine = (id) => {
@@ -22,6 +22,7 @@ const Home = ({navigation}) => {
         setFilms(removeFilms)
     }
     const addNewRoutine = (title, year) => {
+        if(!title || !year) return Alert.alert("error, 'please complete your data")
       // setiap film akan disimpan dalam bentuk object, maka setiap menambah film baru, berarti kita menambah object baru
       // dalam pembuatan id kita membutuhkan library untuk membuat string random yang akan bersifat unique
         const newFilm = {id: shortid.generate(), title, year}
@@ -46,6 +47,8 @@ const Home = ({navigation}) => {
                 // item = {id, title, year}
                 // harus item tidak boleh yang lain
                 renderItem={({item}) => <ListItem film={item} deleteRoutine={deleteRoutine} /> }
+                // tidak udah dibikin {item} cukup dengan item
+                keyExtractor={(item) => {return item.id}}
             />
             {/* <Details /> */}
         </View>

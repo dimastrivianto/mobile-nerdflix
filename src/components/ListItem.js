@@ -13,11 +13,11 @@ const ListItem = ({film, deleteRoutine}) => {
     const navigation = useNavigation()
 
     return (
-        <TouchableOpacity style={styles.listItem}>
+        <TouchableOpacity style={styles.listItem} onPress={() => navigation.navigate('Details',{film})}>
             <View style={styles.listItemView}>
                 <View>
-                    <Text style={styles.listTitle}  onPress={() => navigation.navigate('Details',{film})}>{film.title}</Text>
-                    <Text style={styles.listYear}  onPress={() => navigation.navigate('Details', {film})}>{film.year}</Text>
+                    <Text style={styles.listTitle}>{film.title}</Text>
+                    <Text style={styles.listYear}>{film.year}</Text>
                 </View>
                 <Button title='finish' color='red' onPress={() => {deleteData(film.id)}} />
             </View>
